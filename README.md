@@ -8,7 +8,12 @@ The second variant is necessary to include a <mask> token where you want the mod
 
 ------------------------------------------------------------
 ### Requirement-steps:
- *You will need to do this using command-line in application folder. *
+#### 0. Install Python: 
+[![PythonVersion](https://img.shields.io/static/v1?label=python&message=3.7%20|%203.9&color=blue)](https://www.python.org/downloads/)
+First things first, you'll need to install Python (3.9.4 is the newest stable version when writing this).
+*Consider adding Python to PATH (in options when installing, or later - you can google it) for easier python command execution.*
+
+ * **Below:** You will need to do all this using command-line in the application folder. *
 #### 1. Create and active virtual environment:
 ```bash
 python -m venv venv
