@@ -37,6 +37,7 @@ jQuery(document).ready(function () {
                 $('#text_bart').val(jsondata['bart'])
                 $('#text_electra').val(jsondata['electra'])
                 $('#text_roberta').val(jsondata['roberta'])
+                $('#text_phobert').val(jsondata['phobert'])
             }).fail(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
             });
@@ -67,6 +68,7 @@ jQuery(document).ready(function () {
             $('#mask_text_bart').val(jsondata['bart'])
             $('#mask_text_electra').val(jsondata['electra'])
             $('#mask_text_roberta').val(jsondata['roberta'])
+            $('#mask_text_phobert').val(jsondata['phobert'])
         }).fail(function (jsondata, textStatus, jqXHR) {
             console.log(jsondata)
         });

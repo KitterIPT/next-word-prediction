@@ -26,6 +26,10 @@ from transformers import RobertaTokenizer, RobertaForMaskedLM
 roberta_tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 roberta_model = RobertaForMaskedLM.from_pretrained('roberta-base').eval()
 
+from transformers import AutoTokenizer, AutoModelForMaskedLM
+phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
+phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
+
 top_k = 10
 
 
@@ -93,7 +97,14 @@ def get_all_predictions(text_sentence, top_clean=5):
         predict = roberta_model(input_ids)[0]
     roberta = decode(roberta_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
-    return {'bert': bert,
+     # ========================= PHOBERT =================================
+    input_ids, mask_idx = encode(phobert_tokenizer, text_sentence, add_special_tokens=True)
+    with torch.no_grad():
+        predict = phobert_model(input_ids)[0]
+    phobert = decode(phobert_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+    return {'phobert': phobert,
+            'bert': bert,
             'xlnet': xlnet,
             'xlm': xlm,
             'bart': bart,
