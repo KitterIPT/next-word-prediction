@@ -14,6 +14,25 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Open+Sans:300|Oxygen|Material+Icons" rel="stylesheet">
+    <style>
+        .custo1{
+            display: flex;
+            flex-direction: column;
+        }
+        .custom2{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        h3{
+            text-align: center;
+        }
+        .cter{
+            margin: 8%;
+        }
+        .hiding{
+            opacity: 0;
+        }
+    </style>
 </head>
 
 
@@ -26,9 +45,8 @@
         <div class="col-sm-1"></div>
 
         <div class="col-sm-10">
-            <center>
-                <h3>Word Prediction with Transformers</h3>
-            </center>
+
+            <h3>Word Prediction with Transformers</h3>
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <br>
@@ -46,35 +64,49 @@
             </div>
 
             <h4> Predictions </h4>
-            <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BERT</label>
-                    <textarea class="form-control txt_response" id="text_bert" readonly></textarea>
+            <div class="custom1">
+                <hr>
+                <h5>Vietnames</h5>
+                <div class="custom2">
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">PHOBERT</label>
+                        <textarea class="form-control txt_response" id="text_phobert" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">BERT</label>
+                        <textarea class="form-control txt_response" id="text_bert" readonly></textarea>
+                    </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLNET</label>
-                    <textarea class="form-control txt_response" id="text_xlnet" readonly></textarea>
+                <hr>
+                <h5>English</h5>
+                <div class="custom2">
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">XLNET</label>
+                        <textarea class="form-control txt_response" id="text_xlnet" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">BART</label>
+                        <textarea class="form-control txt_response" id="text_bart" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">ELECTRA</label>
+                        <textarea class="form-control txt_response" id="text_electra" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">ROBERTA</label>
+                        <textarea class="form-control txt_response" id="text_roberta" readonly></textarea>
+                    </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLM-Roberta</label>
-                    <textarea class="form-control txt_response" id="text_xlm" readonly></textarea>
+                <hr>
+                <h5>Multi-Language</h5>
+                <div class="custom2">
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">XLM-Roberta</label>
+                        <textarea class="form-control txt_response" id="text_xlm" readonly></textarea>
+                    </div>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BART</label>
-                    <textarea class="form-control txt_response" id="text_bart" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ELECTRA</label>
-                    <textarea class="form-control txt_response" id="text_electra" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ROBERTA</label>
-                    <textarea class="form-control txt_response" id="text_roberta" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">PHOBERT</label>
-                    <textarea class="form-control txt_response" id="text_phobert" readonly></textarea>
-                </div>
+                
+                
                 <!-- <div class="form-group col-md-2">
                     <label for="text_paragraphs">VI-BERT-UNCASED</label>
                     <textarea class="form-control txt_response" id="text_vi_bert" readonly></textarea>
@@ -88,72 +120,80 @@
                     <textarea class="form-control txt_response" id="text_vi3_bert" readonly></textarea> -->
                 </div>
             </div>
-            <hr>
 
+        <div class="col-sm-10 cter">
             <!-- MASKED PREDICTION -->
-            <center>
-                <h3>Masked Word Prediction</h3>
-            </center>
-
+            
+            <h3>Masked Word Prediction</h3>  
             <div class="form-row">
                 <div class="form-group col-md-8">
-                    <br>
                     <h4>Type a sentence, include &lt;mask&gt; to predict the word and hit Predict.</h4>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-4 hiding">
                     <br>
                     <label for="max_words" id="label_max_words">Top k words: 5</label>
                     <input type="range" class="custom-range" min="1" max="10" value="5" step="1" id="max_words_mask">
                 </div>
                 <div class="form-group col-md-2">
-                    <label></label>
                     <button type="button" class="btn btn-primary btn-lg btn-block" id="btn-process">Predict</button>
-                </div>
-            </div>
+                </div> 
+            </div>    
+            
             <div class="form-row">
                 <textarea class="form-control txt_input" id="mask_input_text" rows="1"></textarea>
             </div>
 
             <h4> Predictions </h4>
+           
+            <div class="custom1">
+                <hr>
+                <h5>Vietnamese</h5>
+                <div class="custom2">
+                   
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">PHOBERT</label>
+                        <textarea class="form-control txt_response" id="mask_text_phobert" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">BERT</label>
+                        <textarea class="form-control txt_response" id="mask_text_bert" readonly rows="1"></textarea>
+                    </div>
+                </div>
+                <hr>
+                <h5>English</h5>
+                <div class="custom2">
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">XLNET</label>
+                        <textarea class="form-control txt_response" id="mask_text_xlnet" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">BART</label>
+                        <textarea class="form-control txt_response" id="mask_text_bart" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">ELECTRA</label>
+                        <textarea class="form-control txt_response" id="mask_text_electra" readonly></textarea>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">ROBERTA</label>
+                        <textarea class="form-control txt_response" id="mask_text_roberta" readonly></textarea>
+                    </div>
+                </div>
+                <hr>
+                <h5>Multi-Language</h5>
+                <div class="custom2">
+                    <div class="form-group col-md-2">
+                        <label for="text_paragraphs">XLM-Roberta</label>
+                        <textarea class="form-control txt_response" id="mask_text_xlm" readonly></textarea>
+                    </div>
+                </div>
+            </div>
             <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_bert" readonly rows="1"></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLNET</label>
-                    <textarea class="form-control txt_response" id="mask_text_xlnet" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">XLM-Roberta</label>
-                    <textarea class="form-control txt_response" id="mask_text_xlm" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">BART</label>
-                    <textarea class="form-control txt_response" id="mask_text_bart" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ELECTRA</label>
-                    <textarea class="form-control txt_response" id="mask_text_electra" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">ROBERTA</label>
-                    <textarea class="form-control txt_response" id="mask_text_roberta" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">PHOBERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_phobert" readonly></textarea>
-                    <!-- <label for="text_paragraphs">VI_BERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_vi_bert" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">VI2_BERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_vi2_bert" readonly></textarea>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="text_paragraphs">VI3_BERT</label>
-                    <textarea class="form-control txt_response" id="mask_text_vi3_bert" readonly></textarea> -->
-                </div>
+                
+               
+                
+                
+                
             </div>
 
 
