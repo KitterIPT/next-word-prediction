@@ -39,6 +39,8 @@ jQuery(document).ready(function () {
                 $('#text_roberta').val(jsondata['roberta'])
                 $('#text_phobert').val(jsondata['phobert'])
                 $('#text_vi_bert').val(jsondata['vi_bert'])
+                $('#text_vi2_bert').val(jsondata['vi2_bert'])
+                $('#text_vi3_bert').val(jsondata['vi3_bert'])
             }).fail(function (jsondata, textStatus, jqXHR) {
                 console.log(jsondata)
             });
@@ -71,6 +73,8 @@ jQuery(document).ready(function () {
             $('#mask_text_roberta').val(jsondata['roberta'])
             $('#mask_text_phobert').val(jsondata['phobert'])
             $('#mask_text_vi_bert').val(jsondata['vi_bert'])
+            $('#mask_text_vi2_bert').val(jsondata['vi2_bert'])
+            $('#mask_text_vi3_bert').val(jsondata['vi3_bert'])
         }).fail(function (jsondata, textStatus, jqXHR) {
             console.log(jsondata)
         });

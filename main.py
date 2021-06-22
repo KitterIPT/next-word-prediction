@@ -2,37 +2,53 @@
 import torch
 import string
 
-from transformers import BertTokenizer, BertForMaskedLM
-bert_tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-bert_model = BertForMaskedLM.from_pretrained('bert-base-uncased').eval()
 
+# Original index
+## Base BERT
+from transformers import BertTokenizer, BertForMaskedLM
+## Base XLNet
 from transformers import XLNetTokenizer, XLNetLMHeadModel
 xlnet_tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
 xlnet_model = XLNetLMHeadModel.from_pretrained('xlnet-base-cased').eval()
-
+## Base XLMRoberta
 from transformers import XLMRobertaTokenizer, XLMRobertaForMaskedLM
 xlmroberta_tokenizer = XLMRobertaTokenizer.from_pretrained('xlm-roberta-base')
 xlmroberta_model = XLMRobertaForMaskedLM.from_pretrained('xlm-roberta-base').eval()
-
+## Base Bart
 from transformers import BartTokenizer, BartForConditionalGeneration
 bart_tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
 bart_model = BartForConditionalGeneration.from_pretrained('facebook/bart-large').eval()
-
+## Base Eletra
 from transformers import ElectraTokenizer, ElectraForMaskedLM
 electra_tokenizer = ElectraTokenizer.from_pretrained('google/electra-small-generator')
 electra_model = ElectraForMaskedLM.from_pretrained('google/electra-small-generator').eval()
-
+## Base Roberta
 from transformers import RobertaTokenizer, RobertaForMaskedLM
 roberta_tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 roberta_model = RobertaForMaskedLM.from_pretrained('roberta-base').eval()
 
+## Bert VNese base uncased
+from transformers import AutoTokenizer, AutoModelForMaskedLM
+phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
+phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
 # from transformers import AutoTokenizer, AutoModelForMaskedLM
 # phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 # phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
 
 from transformers import BertModel # BertTokenizer, BertModel, BertForMaskedLM
-vi_tokenizer = BertTokenizer.from_pretrained("trituenhantaoio/bert-base-vietnamese-uncased")
+vi_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased')
 vi_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased').eval()
+## Bert VNese base diacritics
+vi2_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased')
+vi2_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased').eval()
+## Bert VNese Pho :)
+from transformers import AutoModel, AutoTokenizer, AutoModelForMaskedLM
+vi3_tokenizer = AutoTokenizer.from_pretrained('vinai/phobert-base')
+vi3_model = AutoModelForMaskedLM.from_pretrained('vinai/phobert-base').eval()
+
+from transformers import PhobertTokenizer, RobertaModel
+bert_tokenizer = PhobertTokenizer.from_pretrained('vinai/phobert-base')
+bert_model = RobertaModel.from_pretrained('vinai/phobert-base').eval()
 
 top_k = 10
 
@@ -113,6 +129,17 @@ def get_all_predictions(text_sentence, top_clean=5):
         predict = vi_model(input_ids)[0]
     vi_bert = decode(vi_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
+    # ========================= VI2_BERT ================================
+    input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
+    with torch.no_grad():
+        predict = vi2_model(input_ids)[0]
+    vi2_bert = decode(vi2_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+    # ========================= VI3 =====================================
+    input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
+    with torch.no_grad():
+        predict = vi3_model(input_ids)[0]
+    vi3_bert = decode(vi3_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
     return {'phobert': phobert,
             'bert': bert,
@@ -121,4 +148,7 @@ def get_all_predictions(text_sentence, top_clean=5):
             'bart': bart,
             'electra': electra,
             'roberta': roberta,
-            'vi_bert': vi_bert}
+            'vi_bert': vi_bert,
+            'vi2_bert': vi2_bert,
+            'vi3_bert': vi3_bert
+            }

@@ -37,6 +37,5 @@ def get_prediction_mask():
         print(err)
         return app.response_class(response=json.dumps(err), status=500, mimetype='application/json')
 
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=8000, use_reloader=False)
