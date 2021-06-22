@@ -31,6 +31,9 @@ roberta_model = RobertaForMaskedLM.from_pretrained('roberta-base').eval()
 from transformers import AutoTokenizer, AutoModelForMaskedLM
 phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
+# from transformers import AutoTokenizer, AutoModelForMaskedLM
+# phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
+# phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
 
 from transformers import BertModel # BertTokenizer, BertModel, BertForMaskedLM
 vi_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased')
