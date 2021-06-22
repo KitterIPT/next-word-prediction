@@ -23,7 +23,7 @@ venv\scripts\activate
 ```
 #### 2. Install requirements:
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 #### 3. Run application:
 *The first load takes a long time since the application will download all the models.*
