@@ -2,7 +2,6 @@
 import torch
 import string
 
-
 # Original index
 ## Base BERT
 from transformers import BertTokenizer, BertForMaskedLM
@@ -35,16 +34,16 @@ phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
 # phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
 # phobert_model = AutoModelForMaskedLM.from_pretrained("vinai/phobert-base")
 
-from transformers import BertModel # BertTokenizer, BertModel, BertForMaskedLM
-vi_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased')
-vi_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased').eval()
+# from transformers import BertModel # BertTokenizer, BertModel, BertForMaskedLM
+# vi_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased')
+# vi_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased').eval()
 ## Bert VNese base diacritics
-vi2_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased')
-vi2_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased').eval()
+# vi2_tokenizer = BertTokenizer.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased')
+# vi2_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-diacritics-uncased').eval()
 ## Bert VNese Pho :)
-from transformers import AutoModel, AutoTokenizer, AutoModelForMaskedLM
-vi3_tokenizer = AutoTokenizer.from_pretrained('vinai/phobert-base')
-vi3_model = AutoModelForMaskedLM.from_pretrained('vinai/phobert-base').eval()
+# from transformers import AutoModel, AutoTokenizer, AutoModelForMaskedLM
+# vi3_tokenizer = AutoTokenizer.from_pretrained('vinai/phobert-base')
+# vi3_model = AutoModelForMaskedLM.from_pretrained('vinai/phobert-base').eval()
 
 from transformers import PhobertTokenizer, RobertaModel
 bert_tokenizer = PhobertTokenizer.from_pretrained('vinai/phobert-base')
@@ -124,22 +123,22 @@ def get_all_predictions(text_sentence, top_clean=5):
     phobert = decode(phobert_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
             
     # ========================= VI_BERT =================================
-    input_ids, mask_idx = encode(vi_tokenizer, text_sentence)
-    with torch.no_grad():
-        predict = vi_model(input_ids)[0]
-    vi_bert = decode(vi_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+    # input_ids, mask_idx = encode(vi_tokenizer, text_sentence)
+    # with torch.no_grad():
+    #     predict = vi_model(input_ids)[0]
+    # vi_bert = decode(vi_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
-    # ========================= VI2_BERT ================================
-    input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
-    with torch.no_grad():
-        predict = vi2_model(input_ids)[0]
-    vi2_bert = decode(vi2_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+    # # ========================= VI2_BERT ================================
+    # input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
+    # with torch.no_grad():
+    #     predict = vi2_model(input_ids)[0]
+    # vi2_bert = decode(vi2_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
-    # ========================= VI3 =====================================
-    input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
-    with torch.no_grad():
-        predict = vi3_model(input_ids)[0]
-    vi3_bert = decode(vi3_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+    # # ========================= VI3 =====================================
+    # input_ids, mask_idx = encode(vi2_tokenizer, text_sentence)
+    # with torch.no_grad():
+    #     predict = vi3_model(input_ids)[0]
+    # vi3_bert = decode(vi3_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
     return {'phobert': phobert,
             'bert': bert,
@@ -147,8 +146,8 @@ def get_all_predictions(text_sentence, top_clean=5):
             'xlm': xlm,
             'bart': bart,
             'electra': electra,
-            'roberta': roberta,
-            'vi_bert': vi_bert,
-            'vi2_bert': vi2_bert,
-            'vi3_bert': vi3_bert
+            'roberta': roberta
+            # 'vi_bert': vi_bert,
+            # 'vi2_bert': vi2_bert,
+            # 'vi3_bert': vi3_bert
             }
