@@ -26,6 +26,11 @@ from transformers import RobertaTokenizer, RobertaForMaskedLM
 roberta_tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 roberta_model = RobertaForMaskedLM.from_pretrained('roberta-base').eval()
 
+from transformers import BertModel # BertTokenizer, BertModel, BertForMaskedLM
+vi_tokenizer = BertTokenizer.from_pretrained("trituenhantaoio/bert-base-vietnamese-uncased")
+vi_model = BertModel.from_pretrained('trituenhantaoio/bert-base-vietnamese-uncased').eval()
+
+
 top_k = 10
 
 
@@ -93,9 +98,17 @@ def get_all_predictions(text_sentence, top_clean=5):
         predict = roberta_model(input_ids)[0]
     roberta = decode(roberta_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
 
+    # ========================= VI_BERT =================================
+    input_ids, mask_idx = encode(vi_tokenizer, text_sentence)
+    with torch.no_grad():
+        predict = vi_model(input_ids)[0]
+    vi_bert = decode(vi_tokenizer, predict[0, mask_idx, :].topk(top_k).indices.tolist(), top_clean)
+
+
     return {'bert': bert,
             'xlnet': xlnet,
             'xlm': xlm,
             'bart': bart,
             'electra': electra,
-            'roberta': roberta}
+            'roberta': roberta,
+            'vi_bert': vi_bert}
